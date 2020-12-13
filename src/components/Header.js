@@ -21,8 +21,11 @@ const Header = () => {
             </div>
             <div className="menu">
                 <MenuItem>홈</MenuItem>
-                <MenuItem>소개</MenuItem>
-                <MenuItem>포스트</MenuItem>
+                <MenuItem>폐의약품 처리 방법</MenuItem>
+                <MenuItem>관리 모드</MenuItem>
+            </div>
+            <div>
+                <br/><br/><br/>
             </div>
         </div>
     );
