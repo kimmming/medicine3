@@ -3,6 +3,7 @@ import React from 'react' ;
 //import './App.css';
 import pick from './pick.png';
 
+
 const { kakao } = window;
 
 class Map extends React.Component{
@@ -49,8 +50,9 @@ class Map extends React.Component{
 },
       
   ];
+ 
 
-  const imageSrc = "https://cdn.icon-icons.com/icons2/1749/PNG/512/06_113688.png"; 
+ const imageSrc= "https://cdn.icon-icons.com/icons2/1749/PNG/512/06_113688.png"; 
 
   for (var i = 0; i < positions.length; i ++) {
     
@@ -109,8 +111,8 @@ function makeOverListener(map, marker, infowindow) {
   {
     return (
      
-      <div id="myMap" style={{width: `500px`, height: `500px`}}></div>
-      
+      <div id="myMap" style={{width: `80%`, height: '500px'}}></div>
+     
     );
   }
 }
