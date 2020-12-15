@@ -1,7 +1,11 @@
 /*global kakao*/
 import React from 'react' ;
 //import './App.css';
+<<<<<<< HEAD
 import pick from './pick.png';
+=======
+import table from './table';
+>>>>>>> b7efda059f89084af8852273ebd670243f6f107c
 
 const { kakao } = window;
 
@@ -49,8 +53,9 @@ class Map extends React.Component{
 },
       
   ];
+ 
 
-  const imageSrc = "https://cdn.icon-icons.com/icons2/1749/PNG/512/06_113688.png"; 
+ const imageSrc= "https://cdn.icon-icons.com/icons2/1749/PNG/512/06_113688.png"; 
 
   for (var i = 0; i < positions.length; i ++) {
     
@@ -110,7 +115,7 @@ function makeOverListener(map, marker, infowindow) {
     return (
      
       <div id="myMap" style={{width: `500px`, height: `500px`}}></div>
-      
+     
     );
   }
 }

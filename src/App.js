@@ -2,10 +2,16 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 
 import Header from './components/Header';
+<<<<<<< HEAD
 
 import Home from './containers/Home';
 import About from './containers/About';
 import Manage from './containers/Manage';
+=======
+//import Login from './components/Login';
+import Map from './components/Map';
+import Table from './components/table';
+>>>>>>> b7efda059f89084af8852273ebd670243f6f107c
 
 class App extends Component {
   render() {
@@ -28,6 +34,12 @@ class App extends Component {
         <Map/>
         </center>
         {this.props.children}
+        
+        <Table/>
+        
+        
+        
+       
       </div>
       */
     );
