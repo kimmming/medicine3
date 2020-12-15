@@ -1,11 +1,8 @@
 /*global kakao*/
 import React from 'react' ;
 //import './App.css';
-<<<<<<< HEAD
 import pick from './pick.png';
-=======
-import table from './table';
->>>>>>> b7efda059f89084af8852273ebd670243f6f107c
+
 
 const { kakao } = window;
 
@@ -114,7 +111,7 @@ function makeOverListener(map, marker, infowindow) {
   {
     return (
      
-      <div id="myMap" style={{width: `500px`, height: `500px`}}></div>
+      <div id="myMap" style={{width: `80%`, height: '500px'}}></div>
      
     );
   }
