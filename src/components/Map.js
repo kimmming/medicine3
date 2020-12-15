@@ -1,7 +1,7 @@
 /*global kakao*/
 import React from 'react' ;
 //import './App.css';
-
+import pick from './pick.png';
 
 const { kakao } = window;
 
