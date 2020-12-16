@@ -1,123 +1,102 @@
-/*global kakao*/
-import React from 'react' ;
-//import './App.css';
-import pick from './pick.png';
+/*global kakao */
+import React, { useEffect } from "react";
+import { markerdata } from "../data/markerData";
+import p_r from "../components/pick/pick_red.png";
+import p_y from "../components/pick/pick_yellow.png";
+import p_g from "../components/pick/pick_green.png";
+import p_b from "../components/pick/pick_blue.png";
 
+export default function Map() {
+  useEffect(() => {
+    mapscript();
+  }, []);
 
-const { kakao } = window;
+  const imageSrc1= p_r;
+  const imageSrc2= p_y;
+  const imageSrc3= p_g;
+  const imageSrc4= p_b;
 
-class Map extends React.Component{
- 
+  const imageSize = new kakao.maps.Size(55,55);
 
-  componentDidMount() {
-   
-    const mapContainer = document.getElementById('myMap');
-    const mapOption = {
+  //마커 이미지 생성
+  const markerImage1 = new kakao.maps.MarkerImage(imageSrc1, imageSize);
+  const markerImage2 = new kakao.maps.MarkerImage(imageSrc2, imageSize);
+  const markerImage3 = new kakao.maps.MarkerImage(imageSrc3, imageSize);
+  const markerImage4 = new kakao.maps.MarkerImage(imageSrc4, imageSize);
+
+  const mapscript = () => {
+    let container = document.getElementById("map");
+    let options = {
       center : new kakao.maps.LatLng(35.146869223518685, 126.92022253067874),
       level: 5
     };
 
-    const map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-    const positions = [
-      {
-          content: '동구종로약국', 
-          latlng: new kakao.maps.LatLng(35.145489, 126.922149)
-      },
-      {
-          content: '푸른약국', 
-          latlng: new kakao.maps.LatLng(35.127969, 126.93093)
-      },
-      {
-          content: '피엠약국', 
-          latlng: new kakao.maps.LatLng(35.15874, 126.93523)
-      },
-      {
-          content: '보림당약국',
-          latlng: new kakao.maps.LatLng(35.13649, 126.92598)
-      },
-      {
-        content: '팜약국', 
-        latlng: new kakao.maps.LatLng(35.1468, 126.91796)
-    },
-    {
-      content: '조은약국', 
-      latlng: new kakao.maps.LatLng(35.1340194982549, 126.92634603283939)
-  },
-  {
-    content: '광주약국', 
-    latlng: new kakao.maps.LatLng(35.16553604820528, 126.91829830956627)
-},
-      
-  ];
- 
-
- const imageSrc= "https://cdn.icon-icons.com/icons2/1749/PNG/512/06_113688.png"; 
-
-  for (var i = 0; i < positions.length; i ++) {
-    
-    // 마커 이미지의 이미지 크기 입니다
-    const imageSize = new kakao.maps.Size(40, 40); 
-    
-    // 마커 이미지를 생성합니다    
-    const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-    
-    // 마커를 생성합니다
-    const marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng, // 마커를 표시할 위치
-        content : positions[i].content, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image : markerImage, // 마커 이미지 
-        clickable: true ,
-       
-    });
-
-    var iwRemoveable = true;
-    
- // 마커에 표시할 오버레이를 생성합니다 
-  var infowindow = new kakao.maps.InfoWindow({
-    content: positions[i].content,
-    
-    removable : iwRemoveable
-    // 인포윈도우에 표시할 내용
-  
-  });
-
+    //map
+    const map = new kakao.maps.Map(container, options);
    
-  kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
-}
+    markerdata.forEach((el) => {
+    
+      if(el.per>75){
 
-// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-function makeOverListener(map, marker, infowindow) {
-  return function() {
-      infowindow.open(map, marker);
+        //마커 생성
+        const marker1 = new kakao.maps.Marker({
+          map: map,
+          position: new kakao.maps.LatLng(el.lat, el.lng),
+          image: markerImage1,
+        });
+        var iwContent = '<b>'+el.title+'</b>'+'<br>'+'<a style="color:red">'+ el.per+' % 차있음</a>';
+
+        var infowindow = new kakao.maps.InfoWindow({
+          position:  new kakao.maps.LatLng(el.lat, el.lng),
+          content: iwContent,
+        });
+
+        infowindow.open(map,marker1);
+      } else if((el.per<=75)&&(el.per>50)){
+        
+
+        const marker2 = new kakao.maps.Marker({
+          map:map,
+          position: new kakao.maps.LatLng(el.lat, el.lng),
+          image: markerImage2,
+        });
+        var iwContent = '<b>'+el.title+'</b>'+'<br>'+'<a style="color:orange">'+ el.per+' % 차있음</a>';
+
+        var infowindow = new kakao.maps.InfoWindow({
+          position:  new kakao.maps.LatLng(el.lat, el.lng),
+          content: iwContent,
+        });
+        infowindow.open(map,marker2);
+      } else if((el.per<=50)&&(el.per>25)){
+        
+        const marker3 = new kakao.maps.Marker({
+          map:map,
+          position: new kakao.maps.LatLng(el.lat, el.lng),
+          image: markerImage3,
+        });
+        var iwContent = '<b>'+el.title+'</b>'+'<br>'+'<a style="color:green">'+ el.per+' % 차있음</a>';
+
+        var infowindow = new kakao.maps.InfoWindow({
+          position:  new kakao.maps.LatLng(el.lat, el.lng),
+          content: iwContent,
+        });
+        infowindow.open(map,marker3);
+      } else {
+        const marker4 = new kakao.maps.Marker({
+          map:map,
+          position: new kakao.maps.LatLng(el.lat, el.lng),
+          image: markerImage4,
+        });
+        var iwContent = '<b>'+el.title+'</b>'+'<br>'+'<a style="color:blue">'+ el.per+' % 차있음</a>';
+
+        var infowindow = new kakao.maps.InfoWindow({
+          position:  new kakao.maps.LatLng(el.lat, el.lng),
+          content: iwContent,
+        });
+        infowindow.open(map,marker4);
+      }
+    });
   };
+
+  return <div id="map" style={{ width: "80vw", height: "100vh" }}></div>;
 }
-
-
-
-
-
-     
-  }
-
-  
-
-
-
-
-
-  render()
-  {
-    return (
-     
-      <div id="myMap" style={{width: `80%`, height: '500px'}}></div>
-     
-    );
-  }
-}
-
-
-
-
-export default Map;

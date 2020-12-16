@@ -20,16 +20,6 @@ class App extends Component {
             <Route path="/manage" component={Manage}/>
         </div>
       </Router>
-
-      /*
-      <div>
-        <Header/>
-        <center>
-        <Map/>
-        </center>
-        {this.props.children}
-      </div>
-      */
     );
   }
 }

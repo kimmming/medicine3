@@ -31,9 +31,7 @@ const Header = () => {
                 <Link to='/manage'>관리 모드</Link>
                 </MenuItem>
             </div>
-            <div>
-                <br/><br/>
-            </div>
+            <br/>
         </div>
     );
 };

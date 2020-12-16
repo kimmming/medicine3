@@ -1,5 +1,5 @@
 import React from 'react'
-import about_pic from './about2.jpeg';
+import about_pic from './about_mz.jpg';
 
 const About = () => {
     return(
@@ -7,8 +7,8 @@ const About = () => {
             <center>
                 <div>
                <img src={about_pic}
-               width='700'
-               height='700'
+               width="900"
+               height="900"
                />
                </div>
             </center>
