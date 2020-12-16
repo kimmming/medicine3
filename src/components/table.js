@@ -15,11 +15,16 @@ const columns = [
 
 const rows = [
   { id: 1, Able: '여유', mediname: '동구종로약국'},
-  { id: 2, Able: '포화', mediname: '어쩌꾸'},
+  { id: 2, Able: '포화', mediname: '푸른약국'},
   { id: 3, Able: '초과', mediname: '피엠약국'},
   { id: 4, Able: '초과', mediname: '보림당약국'},
+  { id: 5, Able: '초과', mediname: '팜약국'},
  
 ];
+
+function con(){
+  
+}
 
 export default function DataTable() {
   return (
