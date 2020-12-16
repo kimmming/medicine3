@@ -27,13 +27,19 @@ export default function Map() {
   const mapscript = () => {
     let container = document.getElementById("map");
     let options = {
-      center : new kakao.maps.LatLng(35.146869223518685, 126.92022253067874),
+      center : new kakao.maps.LatLng(37.456265566265984, 126.70591532575489),
       level: 5
     };
 
     //map
     const map = new kakao.maps.Map(container, options);
-   
+    var mapTypeControl = new kakao.maps.MapTypeControl();
+    
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+    var zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    
     markerdata.forEach((el) => {
     
       if(el.per>75){
@@ -43,15 +49,21 @@ export default function Map() {
           map: map,
           position: new kakao.maps.LatLng(el.lat, el.lng),
           image: markerImage1,
+          clickable: true 
         });
         var iwContent = '<b>'+el.title+'</b>'+'<br>'+'<a style="color:red">'+ el.per+' % 차있음</a>';
+        var iwRemoveable = true; 
 
         var infowindow = new kakao.maps.InfoWindow({
           position:  new kakao.maps.LatLng(el.lat, el.lng),
           content: iwContent,
+          removable : iwRemoveable
         });
-
-        infowindow.open(map,marker1);
+        kakao.maps.event.addListener(marker1, 'click', function() {
+          // 마커 위에 인포윈도우를 표시합니다
+          infowindow.open(map,marker1); 
+        });
+        
       } else if((el.per<=75)&&(el.per>50)){
         
 
@@ -59,42 +71,64 @@ export default function Map() {
           map:map,
           position: new kakao.maps.LatLng(el.lat, el.lng),
           image: markerImage2,
+          clickable: true 
         });
         var iwContent = '<b>'+el.title+'</b>'+'<br>'+'<a style="color:orange">'+ el.per+' % 차있음</a>';
+        var iwRemoveable = true; 
 
         var infowindow = new kakao.maps.InfoWindow({
           position:  new kakao.maps.LatLng(el.lat, el.lng),
           content: iwContent,
+          removable : iwRemoveable
         });
-        infowindow.open(map,marker2);
+        kakao.maps.event.addListener(marker2, 'click', function() {
+          // 마커 위에 인포윈도우를 표시합니다
+          infowindow.open(map,marker2); 
+        });
+        
+
       } else if((el.per<=50)&&(el.per>25)){
         
         const marker3 = new kakao.maps.Marker({
           map:map,
           position: new kakao.maps.LatLng(el.lat, el.lng),
           image: markerImage3,
+          clickable: true 
         });
         var iwContent = '<b>'+el.title+'</b>'+'<br>'+'<a style="color:green">'+ el.per+' % 차있음</a>';
+        var iwRemoveable = true; 
 
         var infowindow = new kakao.maps.InfoWindow({
           position:  new kakao.maps.LatLng(el.lat, el.lng),
           content: iwContent,
+          removable : iwRemoveable
         });
-        infowindow.open(map,marker3);
+        kakao.maps.event.addListener(marker3, 'click', function() {
+          // 마커 위에 인포윈도우를 표시합니다
+          infowindow.open(map,marker3); 
+        });
       } else {
         const marker4 = new kakao.maps.Marker({
           map:map,
           position: new kakao.maps.LatLng(el.lat, el.lng),
           image: markerImage4,
+          clickable: true 
         });
         var iwContent = '<b>'+el.title+'</b>'+'<br>'+'<a style="color:blue">'+ el.per+' % 차있음</a>';
+        var iwRemoveable = true; 
 
         var infowindow = new kakao.maps.InfoWindow({
           position:  new kakao.maps.LatLng(el.lat, el.lng),
           content: iwContent,
+          removable : iwRemoveable
         });
-        infowindow.open(map,marker4);
+        kakao.maps.event.addListener(marker4, 'click', function() {
+          // 마커 위에 인포윈도우를 표시합니다
+          infowindow.open(map,marker4); 
+          
+        });
       }
+    
     });
   };
 
