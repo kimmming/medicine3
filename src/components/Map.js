@@ -49,15 +49,16 @@ export default function Map() {
           map: map,
           position: new kakao.maps.LatLng(el.lat, el.lng),
           image: markerImage1,
-          clickable: true 
+          clickable: true ,
+         
         });
-        var iwContent = '<b>'+el.title+'</b>'+'<br>'+'<a style="color:red">'+ el.per+' % 차있음</a>';
+        var iwContent = '<b>'+el.title+'</b>'+'<br>'+'<a style="color:red;">'+ el.per+' % 차있음</a>';
         var iwRemoveable = true; 
 
         var infowindow = new kakao.maps.InfoWindow({
           position:  new kakao.maps.LatLng(el.lat, el.lng),
           content: iwContent,
-          removable : iwRemoveable
+          removable : iwRemoveable,
         });
         kakao.maps.event.addListener(marker1, 'click', function() {
           // 마커 위에 인포윈도우를 표시합니다
@@ -79,7 +80,8 @@ export default function Map() {
         var infowindow = new kakao.maps.InfoWindow({
           position:  new kakao.maps.LatLng(el.lat, el.lng),
           content: iwContent,
-          removable : iwRemoveable
+          removable : iwRemoveable,
+          disableAutoPan : true
         });
         kakao.maps.event.addListener(marker2, 'click', function() {
           // 마커 위에 인포윈도우를 표시합니다
